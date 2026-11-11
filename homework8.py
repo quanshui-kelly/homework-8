@@ -36,7 +36,7 @@ def tokenize(text):
             tokens.append(char)
         else:
             current.append(char)
-    
+
     if current:
         tokens.append("".join(current))
     return tokens
@@ -48,7 +48,7 @@ def ngrams(n, tokens):
     result = []
 
     for index, token in enumerate(sum_token[n - 1:], start=n - 1):
-        context = tuple(sum_token[index - n + 1 : index])
+        context = tuple(sum_token[index - n + 1: index])
         result.append((context, token))
     return result
 
@@ -118,6 +118,7 @@ class NgramModel(object):
             log_probability += math.log(probability)
 
         return math.exp(-log_probability / len(sentence_ngrams))
+
 
 def create_ngram_model(n, path):
     model = NgramModel(n)
